@@ -121,6 +121,8 @@ calc.maintainer-groups.hsd,University of Applied Sciences Düsseldorf,Universida
 calc.maintainer-groups.ufes,Federal University of Espírito Santo,Universidade Federal do Espírito Santo,Bundesuniversität Espirito Santo,Universidad Federal de Espírito Santo,에스피리토 산토 연방대학교,Università Federale del Santo Spirito
 calc.maintainer-groups.savben,Istituto di Istruzione Superiore Savoia Benincasa,Istituto di Istruzione Superiore Savoia Benincasa,Istituto di Istruzione Superiore Savoia Benincasa,Istituto di Istruzione Superiore Savoia Benincasa,Istituto di Istruzione Superiore Savoia Benincasa,Istituto di Istruzione Superiore Savoia Benincasa
 calc.editors.button-history,history,Histórico,Verlauf,historia,기록,cronologia
+calc.editors.button-clear-history,clear,limpar,Verlauf löschen,borrar,기록 새로고침,cancella
+calc.editors.confirm-clear-history,Are you sure you want to clear the history? This action cannot be undone.,Tem certeza de que deseja limpar o histórico? Esta ação não pode ser desfeita.,"Sind Sie sicher, dass Sie den Verlauf löschen möchten?",¿Estás seguro de que deseas borrar el historial? Esta acción no se puede deshacer.,기록을 새로고침 하시겠습니까? 이 작업은 취소할 수 없습니다.,Sei sicuro di voler cancellare la cronologia? Questa azione non può essere annullata.
 calc.editors.insert-relation-title,Insert,Inserir,Einfügen,Insertar,Insert,Inserisci
 calc.editors.insert-relation-tooltip,Insert relation or column names,Inserir relação ou nomes de coluna,Beziehungs- oder Spaltennamen einfügen,Insertar nombres de relaciones o columnas,Insert relation or column names,Inserisci nomi di relazioni o colonne
 calc.editors.group.tab-name,Group Editor,Editor de Grupo,Datensatz Editor,Editor de Grupo,그룹 에디터,Editor di gruppo

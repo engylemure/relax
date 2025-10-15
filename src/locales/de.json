@@ -138,6 +138,8 @@
 	"calc.maintainer-groups.ufes": "Bundesuniversit\u00e4t Espirito Santo",
 	"calc.maintainer-groups.savben": "Istituto di Istruzione Superiore Savoia Benincasa",
 	"calc.editors.button-history": "Verlauf",
+	"calc.editors.button-clear-history": "Verlauf l\u00f6schen",
+	"calc.editors.confirm-clear-history": "Sind Sie sicher, dass Sie den Verlauf l\u00f6schen m\u00f6chten?",
 	"calc.editors.insert-relation-title": "Einf\u00fcgen",
 	"calc.editors.insert-relation-tooltip": "Beziehungs- oder Spaltennamen einf\u00fcgen",
 	"calc.editors.group.tab-name": "Datensatz Editor",

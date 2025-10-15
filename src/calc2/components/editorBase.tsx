@@ -685,7 +685,33 @@ class Relation {
 
 const gutterClass = 'CodeMirror-table-edit-markers';
 const eventExecSuccessfulName = 'editor.execSuccessful';
+const HISTORY_STORAGE_KEY = "@editor/history"
 
+function getHistoryStorageKey(editorMode: string) {
+	return `${HISTORY_STORAGE_KEY}/${editorMode}`
+}
+
+function loadHistoryFromStorage(storage: Storage, editorMode: string): HistoryEntry[] {
+	const historyStr = storage.getItem(getHistoryStorageKey(editorMode))
+	if (!historyStr) {
+		return []
+	}
+	return (JSON.parse(historyStr) as (HistoryEntry & { time: string })[]).map(({ time, ...entry }) => ({ ...entry, time: new Date(time) }))
+}
+
+function appendHistoryToStorage(entry: HistoryEntry, historyMaxEntries: number, editorMode: string, storage: Storage) {
+	const history = loadHistoryFromStorage(storage, editorMode);
+	const updatedHistory = [
+		entry,
+		...history
+	].slice(0, historyMaxEntries)
+	storage.setItem(getHistoryStorageKey(editorMode), JSON.stringify(updatedHistory));
+	return updatedHistory;
+}
+
+function clearHistoryFromStorage(storage: Storage, editorMode: string) {
+    storage.removeItem(getHistoryStorageKey(editorMode));
+}
 
 export class EditorBase extends React.Component<Props, State> {
 	private hinterCache: {
@@ -779,7 +805,7 @@ export class EditorBase extends React.Component<Props, State> {
 		this.state = {
 			editor: null,
 			codeMirrorOptions,
-			history: [],
+			history: loadHistoryFromStorage(window.localStorage, props.mode),
 			isSelectionSelected: false,
 			execSuccessful: false,
 			execErrors: [],
@@ -902,8 +928,11 @@ export class EditorBase extends React.Component<Props, State> {
 	
 	// setting example queries..
 	componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any) {
-		if(prevState.editor) {
-			if(this.props.exampleSql && this.props.exampleSql !== '' && !this.state.addedExampleSqlQuery && this.props.tab === 'sql') {
+		if (prevProps.mode !== this.props.mode) {
+			this.setState({ history: loadHistoryFromStorage(window.localStorage, this.props.mode) })
+		}
+		if (prevState.editor) {
+			if (this.props.exampleSql && this.props.exampleSql !== '' && !this.state.addedExampleSqlQuery && this.props.tab === 'sql') {
 				this.replaceAll(this.props.exampleSql)
 				this.setState({addedExampleSqlQuery: true});
 			}
@@ -917,6 +946,14 @@ export class EditorBase extends React.Component<Props, State> {
 				// TODO: maybe auto format / replace ?
 				this.setState({addedExampleRAQuery: true});
 			}
+		}
+	}
+
+	onHistoryStorageChange(event: StorageEvent) {
+		if (event.storageArea === window.localStorage && event.key === getHistoryStorageKey(this.props.mode)) {
+			this.setState({
+				history: loadHistoryFromStorage(event.storageArea, this.props.mode)
+			});
 		}
 	}
 
@@ -954,10 +991,14 @@ export class EditorBase extends React.Component<Props, State> {
 		editor.on('change', (cm: CodeMirror.Editor) => {
 			this.props.textChange(cm);
 		});
-	
 
+		window.addEventListener("storage", this.onHistoryStorageChange);
 	}
 
+
+	componentWillUnmount(): void {
+		window.removeEventListener("storage", this.onHistoryStorageChange);
+	}
 
 	render() {
 		const {
@@ -1058,21 +1099,36 @@ export class EditorBase extends React.Component<Props, State> {
 									<div className="btn-group history-container">
 										<DropdownList
 											label={<span><FontAwesomeIcon icon={faHistory  as IconProp} /> <span className="hideOnSM"><T id="calc.editors.button-history" /></span></span>}
-											elements={history.map(h => ({
-												label: (
-													<>
-														<small className="muted text-muted">{h.time.toLocaleTimeString()}</small>
-														<div>{h.code}</div>
-														{/*
-														// colorize the code
-														codeNode.addClass('colorize');
-														CodeMirror.colorize(codeNode, this.state.editor.getOption('mode'));
-													*/}
-													</>
-												),
-												value: h,
-											}))}
-											onChange={this.applyHistory}
+											elements={[
+												...history.map(h => ({
+													label: (
+														<>
+															<small className="muted text-muted">{h.time.toLocaleTimeString()}</small>
+															<div>{h.code.slice(0, 30) + (h.code.length > 30 ? '...' : '')}</div>
+															{/*
+															// colorize the code
+															codeNode.addClass('colorize');
+															CodeMirror.colorize(codeNode, this.state.editor.getOption('mode'));
+														*/}
+														</>
+													),
+													value: h,
+												})),
+												...(history.length > 0 ? [
+													{ type: 'separator' as const },
+													{
+														label: <span>{t('calc.editors.button-clear-history', { defaultValue: 'Clear history' })}</span>,
+														value: '__clear__',
+													}
+												] : [])
+											]}
+											onChange={(value: HistoryEntry | string) => {
+												if (value === '__clear__') {
+													this.clearHistory();
+													return;
+												}
+												this.applyHistory(value as HistoryEntry);
+											}}
 										/>
 									</div>
 								)
@@ -1163,13 +1219,18 @@ export class EditorBase extends React.Component<Props, State> {
 		};
 
 		this.setState({
-			history: [
-				entry,
-				...this.state.history,
-			].slice(-historyMaxEntries),
+			history: appendHistoryToStorage(entry, historyMaxEntries, this.props.mode, window.localStorage)
 		});
 	}
 
+	clearHistory = () => {
+        if (!window.confirm(t('calc.editors.confirm-clear-history', { defaultValue: 'Clear all history entries?' }))) {
+            return;
+        }
+        clearHistoryFromStorage(window.localStorage, this.props.mode);
+        this.setState({ history: [] });
+    }
+	
 	clearExecutionAlerts() {
 		this.state.execErrors.splice(0, this.state.execErrors.length);
 		toast.dismiss();

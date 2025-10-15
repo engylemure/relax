@@ -104,6 +104,8 @@ export const langEN = {
 	'calc.maintainer-groups.ufes': 'Federal University of Espírito Santo',
 	'calc.maintainer-groups.savben': 'Istituto di Istruzione Superiore Savoia Benincasa',
 	'calc.editors.button-history': 'history',
+	'calc.editors.button-clear-history': 'clear',
+	'calc.editors.confirm-clear-history': 'Are you sure you want to clear the history? This action cannot be undone.',
 	'calc.editors.insert-relation-title': 'Insert',
 	'calc.editors.insert-relation-tooltip': 'Insert relation or column names',
 	'calc.editors.group.tab-name': 'Group Editor',

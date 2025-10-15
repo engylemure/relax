@@ -138,6 +138,8 @@
 	"calc.maintainer-groups.ufes": "Universidade Federal do Esp\u00edrito Santo",
 	"calc.maintainer-groups.savben": "Istituto di Istruzione Superiore Savoia Benincasa",
 	"calc.editors.button-history": "hist\u00f3rico",
+	"calc.editors.button-clear-history": "limpar",
+	"calc.editors.confirm-clear-history": "Tem certeza de que deseja limpar o hist\u00f3rico? Esta a\u00e7\u00e3o n\u00e3o pode ser desfeita.",
 	"calc.editors.insert-relation-title": "Inserir",
 	"calc.editors.insert-relation-tooltip": "Inserir rela\u00e7\u00e3o ou nomes de coluna",
 	"calc.editors.group.tab-name": "Editor de Grupo",

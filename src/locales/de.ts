@@ -103,6 +103,8 @@ export const langDE: Partial<typeof langEN> = {
 	'calc.maintainer-groups.ufes': 'Bundesuniversität Espírito Santo',
 	'calc.maintainer-groups.savben': 'Istituto di Istruzione Superiore Savoia Benincasa',
 	'calc.editors.button-history': 'Verlauf',
+	'calc.editors.button-clear-history': 'Verlauf löschen',
+	'calc.editors.confirm-clear-history': 'Sind Sie sicher, dass Sie den Verlauf löschen möchten?',
 	'calc.editors.insert-relation-title': 'Einfügen',
 	'calc.editors.insert-relation-tooltip': 'Beziehungs- oder Spaltennamen einfügen',
 	'calc.editors.group.tab-name': 'Datensatz Editor',

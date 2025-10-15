@@ -85,6 +85,8 @@ export const langKR = {
 	'calc.maintainer-groups.ufes': '에스피리토 산토 연방대학교',
 	'calc.maintainer-groups.savben': 'Savoia Benincasa 고등교육기관',
 	'calc.editors.button-history': '기록',
+	'calc.editors.button-clear-history': '기록 새로고침',
+	'calc.editors.confirm-clear-history': '기록을 새로고침 하시겠습니까? 이 작업은 취소할 수 없습니다.',
 	'calc.editors.insert-relation-title': 'Insert',
 	'calc.editors.insert-relation-tooltip': 'Insert relation or column names',
 	'calc.editors.group.tab-name': '그룹 에디터',

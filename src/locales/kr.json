@@ -138,6 +138,8 @@
 	"calc.maintainer-groups.ufes": "\uc5d0\uc2a4\ud53c\ub9ac\ud1a0 \uc0b0\ud1a0 \uc5f0\ubc29\ub300\ud559\uad50",
 	"calc.maintainer-groups.savben": "Savoia Benincasa \uace0\ub4f1\uad50\uc6d0\uae30\uad00",
 	"calc.editors.button-history": "\uae30\ub85d",
+	"calc.editors.button-clear-history": "\uae30\ub85d \uc0c8\ub85c\uace0\uce68",
+	"calc.editors.confirm-clear-history": "\uae30\ub85d\uc744 \uc0c8\ub85c\uace0\uce68 \ud558\uc2dc\uaca0\uc2b5\ub2c8\uae4c? \uc774 \uc791\uc5c5\uc740 \ucde8\uc18c\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4.",
 	"calc.editors.insert-relation-title": "Insert",
 	"calc.editors.insert-relation-tooltip": "Insert relation or column names",
 	"calc.editors.group.tab-name": "\uadf8\ub8f9 \uc5d0\ub514\ud130",

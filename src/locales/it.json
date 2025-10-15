@@ -89,6 +89,8 @@
 	"calc.maintainer-groups.ufes": "Universit\u00e0 Federale del Santo Spirito",
 	"calc.maintainer-groups.savben": "Istituto di Istruzione Superiore Savoia Benincasa",
 	"calc.editors.button-history": "cronologia",
+	"calc.editors.button-clear-history": "cancella",
+	"calc.editors.confirm-clear-history": "Sei sicuro di voler cancellare la cronologia? Questa azione non pu\u00f2 essere annullata.",
 	"calc.editors.insert-relation-title": "Inserisci",
 	"calc.editors.insert-relation-tooltip": "Inserisci nomi di relazioni o colonne",
 	"calc.editors.group.tab-name": "Editor di gruppo",

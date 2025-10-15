@@ -113,6 +113,8 @@ export const langES: Partial<typeof langEN> = {
   'calc.maintainer-groups.ufes': 'Universidad Federal de Espírito Santo',
   'calc.maintainer-groups.savben': 'Istituto di Istruzione Superiore Savoia Benincasa',
   'calc.editors.button-history': 'historia',
+  'calc.editors.button-clear-history': 'borrar',
+  'calc.editors.confirm-clear-history': '¿Estás seguro de que deseas borrar el historial? Esta acción no se puede deshacer.',
 	'calc.editors.insert-relation-title': 'Insertar',
 	'calc.editors.insert-relation-tooltip': 'Insertar nombres de relaciones o columnas',
   'calc.editors.group.tab-name': 'Editor de Grupo',
