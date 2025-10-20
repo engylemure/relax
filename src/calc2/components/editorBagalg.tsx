@@ -75,6 +75,7 @@ export class EditorBagalg extends React.Component<Props, State> {
 				}}
 				mode="bagalg"
 				execFunction={(self: EditorBase, text: string, offset) => {
+					self.historyAddEntry(text);
 					const ast = parseRelalg(text, Object.keys(relations), false);
 					replaceVariables(ast, relations);
 
@@ -90,9 +91,6 @@ export class EditorBagalg extends React.Component<Props, State> {
 
 					const root = relalgFromRelalgAstRoot(ast, relations);
 					root.check();
-
-
-					self.historyAddEntry(text);
 
 					if (self.props.enableInlineRelationEditor) {
 						self.addInlineRelationMarkers(ast);

@@ -157,6 +157,7 @@ export class EditorSql extends React.Component<Props, State> {
 				mode="text/x-mysql"
 				// @ts-ignore
 				execFunction={async (self: EditorBase, text: string, offset) => {
+					self.historyAddEntry(text);
 					let ast: ReturnType<typeof parseSQLSelect>;
 					let root: RANode;
 					if (EditorSql.editorWorker.worker) {
@@ -185,8 +186,6 @@ export class EditorSql extends React.Component<Props, State> {
 
 					if (root) {
 						root.check();
-
-						self.historyAddEntry(text);
 
 						// calc.displayRaResult(root);
 						return {
