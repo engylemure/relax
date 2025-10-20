@@ -7,6 +7,7 @@ import {
 import { getSerializeValueWithClassName } from "calc2/utils/worker-serde/serializer";
 import { deserializeFromParsedObj } from "calc2/utils/worker-serde/deserializer";
 import classes from "db/exec/classes";
+import { t } from "../i18n";
 
 /**
  * Worker definition for parallel execution of our "db engine", this is intended as a way
@@ -33,7 +34,7 @@ async function execRelalgText(
 ) {
 	try {
 		// const start = performance.now();
-		const ast = parseRelalg(text, Object.keys(relations));
+		const ast = parseRelalg(text, Object.keys(relations), false);
 		replaceVariables(ast, relations);
 
 		if (ast.child === null) {
@@ -86,7 +87,7 @@ type MessageRelalg =
 			payload: {
 				relations: { [name: string]: Relation };
 				groupName: string;
-				id: string;
+        id: string;
 			};
 	  }
 	| {
@@ -94,8 +95,8 @@ type MessageRelalg =
 	  };
 
 ctx.addEventListener("message", async (event: MessageEvent<MessageRelalg>) => {
-  console.log(event);
 	if (!event) return;
+	console.log(event);
 	if (event.data.type === "terminated") {
 		ctx.terminated = true;
 	}

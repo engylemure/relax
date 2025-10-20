@@ -388,18 +388,18 @@ function getClassMappingFromClassArray(classes: Array<any> = []): object {
     }
     const className: string = c.name;
     const previousClass = classMapping[className];
-    if (previousClass && previousClass !== c) {
-      console.warn('WARNING: Found class definition with the same name: ' + className);
-    }
+    // if (previousClass && previousClass !== c) {
+    //   console.warn('WARNING: Found class definition with the same name: ' + className);
+    // }
     // @ts-ignore
     classMapping[className] = c;
 
     // workaround for how webpack generates the class name
     const classNameWithoutFilePrefix = className.split('_').slice(1).join('_')
     const previousClassWithoutFilePrefix = classMapping[classNameWithoutFilePrefix]
-    if (previousClassWithoutFilePrefix && previousClassWithoutFilePrefix !== c) {
-      console.warn('WARNING: Found class definition with the same name: ' + className);
-    }
+    // if (previousClassWithoutFilePrefix && previousClassWithoutFilePrefix !== c) {
+    //   console.warn('WARNING: Found class definition with the same name: ' + className);
+    // }
     // @ts-ignore
     classMapping[classNameWithoutFilePrefix] = c;
   });
