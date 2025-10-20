@@ -9,3 +9,4 @@ build
 /tmp
 /yarn-error.log
 **/reports
+relax/

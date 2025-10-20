@@ -96,7 +96,7 @@ export class Result extends React.Component<Props, State> {
 							}}
 						/>
 						<div>
-							{t('calc.result.exec.time')} {execTime} ms
+							{t('calc.result.exec.time')} {(execTime as number).toFixed(2)} ms
 						</div>
 						<div className="result-table">
 							{result

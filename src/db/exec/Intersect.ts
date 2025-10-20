@@ -35,9 +35,11 @@ export class Intersect extends RANodeBinary {
 		}
 
 		const res = new Table();
+		this._timer.start('_resTime');
 		const orgA = this.getChild().getResult(doEliminateDuplicateRows, session);
 		const orgB = this.getChild2().getResult(doEliminateDuplicateRows, session);
 		res.setSchema(this._schema);
+		this._timer.start('_execTime');
 
 		// copy
 		const numRowsA = orgA.getNumRows();
@@ -73,6 +75,8 @@ export class Intersect extends RANodeBinary {
 			res.eliminateDuplicateRows();
 		}
 		this.setResultNumRows(res.getNumRows());
+		this._execTime = this._timer.end('_execTime');
+		this._resTime = this._timer.end('_resTime');
 		return res;
 	}
 

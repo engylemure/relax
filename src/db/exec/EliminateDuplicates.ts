@@ -36,12 +36,15 @@ export class EliminateDuplicates extends RANodeUnary {
 		if (this._schema === null) {
 			throw new Error(`check not called`);
 		}
-
+		this._timer.start('_resTime');
 		const res = this._child.getResult(doEliminateDuplicateRows, session).copy();
+		this._timer.start('_execTime');
 		res.setSchema(this.getSchema());
 
 		res.eliminateDuplicateRows();
 		this.setResultNumRows(res.getNumRows());
+		this._execTime = this._timer.end('_execTime');
+		this._resTime = this._timer.end('_resTime');
 		return res;
 	}
 

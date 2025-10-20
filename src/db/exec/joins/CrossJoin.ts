@@ -9,6 +9,7 @@ import { RANode, Session } from '../RANode';
 import { Schema } from '../Schema';
 import * as ValueExpr from '../ValueExpr';
 import { Join } from './Join';
+import { Table } from '../Table';
 
 
 /**

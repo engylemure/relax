@@ -288,8 +288,9 @@ export class GroupBy extends RANodeUnary {
 		if (this.checked === null) {
 			throw new Error(`check not called`);
 		}
-
+		this._timer.start('_resTime');
 		const org = this.getChild().getResult(doEliminateDuplicateRows, session);
+		this._timer.start('_execTime');
 		const res = new Table();
 		res.setSchema(this.checked.schema);
 
@@ -465,6 +466,8 @@ export class GroupBy extends RANodeUnary {
 			res.eliminateDuplicateRows();
 		}
 		this.setResultNumRows(res.getNumRows());
+		this._execTime = this._timer.end('_execTime');
+		this._resTime = this._timer.end('_resTime');
 		return res;
 	}
 }
